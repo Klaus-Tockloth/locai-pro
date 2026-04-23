@@ -1,3 +1,5 @@
+English version below ...
+
 ### Zweck
 
 Dieses Programm ermöglicht die Interaktion mit lokalen KI-Modellen, um Prompts zu senden und Antworten in verschiedenen Formaten (Markdown, ANSI, HTML) zu empfangen. Das Ziel ist die nahtlose Integration von KI-Funktionen in den Arbeitsablauf des Benutzers durch die Unterstützung verschiedener Eingabe- und Ausgabekanäle sowie einer Historienverwaltung.
