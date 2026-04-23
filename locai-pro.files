@@ -1,0 +1,23 @@
+# source
+/Users/klaustockloth/go/src/klaus/KI/locai-pro/ansi.go
+/Users/klaustockloth/go/src/klaus/KI/locai-pro/config.go
+/Users/klaustockloth/go/src/klaus/KI/locai-pro/embed.go
+/Users/klaustockloth/go/src/klaus/KI/locai-pro/files.go
+/Users/klaustockloth/go/src/klaus/KI/locai-pro/goldmark.go
+/Users/klaustockloth/go/src/klaus/KI/locai-pro/html.go
+/Users/klaustockloth/go/src/klaus/KI/locai-pro/input.go
+/Users/klaustockloth/go/src/klaus/KI/locai-pro/main.go
+/Users/klaustockloth/go/src/klaus/KI/locai-pro/output.go
+/Users/klaustockloth/go/src/klaus/KI/locai-pro/usage.go
+/Users/klaustockloth/go/src/klaus/KI/locai-pro/utils.go
+/Users/klaustockloth/go/src/klaus/KI/locai-pro/cleanup.go
+/Users/klaustockloth/go/src/klaus/KI/locai-pro/pdf.go
+
+# configuration
+/Users/klaustockloth/go/src/klaus/KI/locai-pro/locai-pro.yaml
+/Users/klaustockloth/go/src/klaus/KI/locai-pro/system-instruction.txt
+
+# other
+/Users/klaustockloth/go/src/klaus/KI/locai-pro/build-binaries.sh
+/Users/klaustockloth/go/src/klaus/KI/locai-pro/README.md
+/Users/klaustockloth/go/src/klaus/KI/locai-pro/locai-pro.png

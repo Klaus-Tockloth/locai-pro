@@ -1,0 +1,209 @@
+﻿# --------------------------------------------------
+#
+# Purpose:
+# - Program configuration for LocAI Client
+# 
+# Release:
+# - v0.1 - 2026-04-21: corresponding to program release
+#
+# Remarks:
+# - Do not use tabs or unnecessary white spaces in YAML files.
+# - !!str = indicates that the associated value is a string
+#
+# Useful links:
+# - none
+# --------------------------------------------------
+
+# LocAI configuration section
+# ----------------------------
+
+# LocAI URL (e.g. http://localhost:1234/v1 for LM Studio)
+LocAIURL: 'http://localhost:1234/v1'
+
+# LocAI AI model (e.g. gemma-4-26B-A4B-it-GGUF, often not used)
+LocAIModel: 'LOCAI_MODEL'
+
+# LocAI API key (your private API key, typically not used)
+LocAIAPIKey: 'LOCAI_API_KEY'
+
+# number of generated responses to return (int)
+LocAICandidateCount: 1
+
+# pure response without any boilerplate
+LocAIPureResponse: false
+
+# maximum number of tokens to include in a candidate (int)
+# Specifies the maximum number of tokens that can be generated in the response. A token 
+# is approximately four characters. 100 tokens correspond to roughly 60-80 english words.
+LocAIMaxOutputTokens:
+
+# Markdown rendering section
+# --------------------------
+
+# handling of current prompt/response pair (valid filename is mandatory)
+# MarkdownRendering: not configurable, the native AI response has already markdown formatting
+MarkdownPromptResponseFile: prompt-response.md
+
+# output of current prompt/response pair (%s = placeholder for name of file)
+MarkdownOutput: false
+MarkdownOutputApplicationMacOS: 'open -a "/Applications/Markdown Editor.app" %s'
+MarkdownOutputApplicationLinux:
+MarkdownOutputApplicationWindows:
+MarkdownOutputApplicationOther:
+
+# copy each prompt/response file to history (schema = yyyymmdd-hhmmss-slug.html)
+MarkdownHistory: true
+MarkdownHistoryDirectory: ./history-markdown
+
+# Ansi (terminal) rendering section
+# ---------------------------------
+
+# handling of current prompt/response pair
+AnsiRendering: true
+AnsiPromptResponseFile: prompt-response.ansi
+
+# output of current prompt/response pair
+AnsiOutput: true
+
+# output line length
+# note: make your terminal wider to avoid unwanted line breaks
+AnsiOutputLineLength: 132
+
+# theme (glamour style) for ansi output
+# glamour predefined: dark, dracula, light, notty, pink, tokyo-night
+# custom predefined: ./assets/glamour-dark-gem-pro.json, ./assets/glamour-light-gem-pro.json
+# custom: create your own glamour style and reference the file path
+#         see https://github.com/charmbracelet/glamour/tree/master/styles
+AnsiOutputTheme: ./assets/glamour-dark-gem-pro.json
+
+# copy each prompt/response file to history (schema = yyyymmdd-hhmmss-slug.html)
+AnsiHistory: true
+AnsiHistoryDirectory: ./history-ansi
+
+# HTML rendering section
+# ----------------------
+
+# handling of current prompt/response pair
+HTMLRendering: true
+HTMLPromptResponseFile: prompt-response.html
+
+# output of current prompt/response pair (%s = placeholder for name of file)
+# it is also possible to specify the browser (e.g. 'open -a "Google Chrome" %s')
+HTMLOutput: true
+HTMLOutputApplicationMacOS: 'open %s'
+HTMLOutputApplicationLinux: 'xdg-open %s'
+HTMLOutputApplicationWindows: 'cmd /c start "" %s'
+HTMLOutputApplicationOther:
+
+# copy each prompt/response file to history (schema = yyyymmdd-hhmmss-slug.html)
+HTMLHistory: true
+HTMLHistoryDirectory: ./history-html
+
+# maximum length of webpage title (equal with first n characters of prompt)
+HTMLMaxLengthTitle: 200
+
+# list of HTML elements to replace or remove (modifies HTML output)
+HTMLReplaceElements:
+- 'class="language-mermaid"': 'class="mermaid"'
+
+# header to insert at beginning of html page (do not change title, %s is placeholder for prompt)
+HTMLHeader: |
+  <!DOCTYPE html>
+  <head>
+    <meta charset="UTF-8">
+    <title>%s</title>
+    <link rel="icon" type="image/svg+xml" href="assets/locai-prompt-303030.svg" media="(prefers-color-scheme: light)">
+    <link rel="icon" type="image/svg+xml" href="assets/locai-prompt-ebebeb.svg" media="(prefers-color-scheme: dark)">
+    <!-- replace highlight theme with your favorite one -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-light.min.css" media="(prefers-color-scheme: light)">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css" media="(prefers-color-scheme: dark)">
+    <link rel="stylesheet" type="text/css" href="assets/locai-prompt.css">
+  </head>
+  <body>
+
+# footer to add to end of html page (e.g. to add javascript functionality)
+HTMLFooter: |
+  <!-- highlight: syntax highlighter with many themes -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+  <!-- add 'copy to clipboard' button to all '<pre><code>' block elements -->
+  <script src="assets/copy-to-clipboard.js"></script>
+  <!-- mathjax: adds both block math and inline math support -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true,  // allows \$
+        processEnvironments: true
+      },
+      options: {
+        ignoreHtmlClass: 'tex2jax_ignore',
+        processHtmlClass: 'tex2jax_process'
+      }
+    };
+  </script>
+  <!-- mermaid: add mermaid grafic support -->
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: false, theme: 'default' });
+    document.addEventListener("DOMContentLoaded", async () => {
+      const mermaidCodes = document.querySelectorAll('pre code.mermaid');
+      for (const codeBlock of mermaidCodes) {
+        const preTag = codeBlock.parentElement;
+        const div = document.createElement('div');
+        div.className = 'mermaid';
+        div.textContent = codeBlock.textContent;
+        preTag.replaceWith(div);
+      }
+      await mermaid.run({
+        querySelector: '.mermaid'
+      });
+    });
+  </script>
+  </body>
+  </html>
+
+# Input section
+# -------------
+
+# input from terminal
+InputFromTerminal: true
+
+# input from file (name of file must be specified)
+InputFromFile: true
+InputFile: prompt-input.txt
+
+# input from localhost (should work on all systems)
+InputFromLocalhost: true
+InputLocalhostPort: 4343
+
+# Notification section
+# --------------------
+
+# notify when prompt processing starts
+NotifyPrompt: true
+NotifyPromptApplicationMacOS: !!str osascript -e 'display notification "Prompt received ..." with title "locai-prompt" sound name "Ping"'
+NotifyPromptApplicationLinux: !!str notify-send "locai-prompt" "Prompt received ..." -i info -t 1000
+NotifyPromptApplicationWindows: !!str msg * /TIME:2 "locai-prompt - Prompt received ..."
+NotifyPromptApplicationOther:
+
+# notify when prompt processing has finished
+NotifyResponse: true
+NotifyResponseApplicationMacOS: !!str osascript -e 'display notification "Response received ..." with title "locai-prompt" sound name "Blow"'
+NotifyResponseApplicationLinux: !!str notify-send "locai-prompt" "Response received ..." -i info -t 1000
+NotifyResponseApplicationWindows: !!str msg * /TIME:2 "locai-prompt - Response received ..."
+NotifyResponseApplicationOther:
+
+# General settings section
+# ------------------------
+
+# System instruction section
+# --------------------------
+# System instructions let you steer the behavior of a model based on your specific needs and use cases.
+# By giving the model system instructions, you provide the model additional context to understand the
+# task, generate more customized responses, and adhere to specific guidelines.
+# The system instruction is read from the specified text file.
+SystemInstructionFile: system-instruction.txt
